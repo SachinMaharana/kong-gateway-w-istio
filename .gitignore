@@ -1,4 +1,4 @@
 istio-1.9.2
-4-key.yaml
-5-secret.yaml
+/4-key.yaml
+/5-secret.yaml
 *.pem
