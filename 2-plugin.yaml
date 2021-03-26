@@ -1,0 +1,9 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: app-jwt
+config:
+  key_claim_name: kid
+  claims_to_verify: 
+    - exp
+plugin: jwt

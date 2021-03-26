@@ -1,0 +1,32 @@
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-get
+  annotations:
+    konghq.com/strip-path: "false"
+    kubernetes.io/ingress.class: kong
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /get
+        backend:
+          serviceName: httpbin
+          servicePort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-post
+  annotations:
+    konghq.com/strip-path: "false"
+    kubernetes.io/ingress.class: kong
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /post
+        backend:
+          serviceName: httpbin
+          servicePort: 80
