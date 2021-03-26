@@ -1,10 +1,9 @@
----
 apiVersion: configuration.konghq.com/v1
 kind: KongConsumer
 metadata:
-  name: user
+  name: admin
   annotations:
     kubernetes.io/ingress.class: kong
-username: user
+username: admin
 credentials:
-  - app-jwt-secret
+  - app-secret

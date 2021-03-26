@@ -4,6 +4,7 @@ kind: Ingress
 metadata:
   name: demo-get
   annotations:
+    konghq.com/plugins: app-jwt
     konghq.com/strip-path: "false"
     kubernetes.io/ingress.class: kong
 spec:
@@ -20,6 +21,7 @@ kind: Ingress
 metadata:
   name: demo-post
   annotations:
+    konghq.com/plugins: app-jwt
     konghq.com/strip-path: "false"
     kubernetes.io/ingress.class: kong
 spec:
