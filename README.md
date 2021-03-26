@@ -1,5 +1,6 @@
 # Kong API Gateway Ingress Controller With Istio Service Mesh
 
+## Create K8s Cluster
 ```bash
 region=us-east1 
 
@@ -15,17 +16,20 @@ gcloud container clusters \
     --min-nodes 1
 ```
 
+## Install Istio
 ```bash
 curl -L https://istio.io/downloadIstio | sh -
 cd istio-1.9.2
 ./bin/istioctl install
 ```
 
+## Sidecar Injection Conf
 ```bash
 kubectl label namespace default istio-injection=enabled
 kubectl create namespace kong
 kubectl label namespace kong istio-injection=enabled
 ```
+## Install Kong Ingress Controller
 ```bash
 kubectl apply -f https://bit.ly/k4k8s
 kubectl get pods -n kong
@@ -34,7 +38,7 @@ export PROXY_IP=<LOADBALANCER_IP>
 curl -i $PROXY_IP
 {"message":"no Route matched with those values"}%                                                                
 ```
-
+## Example Application, Ingress And JWT plugin
 ```bash
 kubectl apply -f https://bit.ly/k8s-httpbin
 kubectl apply -f 100-ingress.yaml
@@ -46,6 +50,7 @@ curl -i $PROXY_IP/get
 {"message":"Unauthorized"}
 ```
 
+## Provision Consumers ans Secrets 
 ```bash
 kubectl apply -f 300-consumers.yaml -n kong
 kubectl create secret -n kong \
@@ -56,6 +61,7 @@ kubectl create secret -n kong \
   --from-literal=secret="HARD_SCERET"
 ```
 
+## Use the credential
 Get the token in jwt.io using above secret, `kid` as `key` in header, and `exp` in payload
 ```bash
 Header
