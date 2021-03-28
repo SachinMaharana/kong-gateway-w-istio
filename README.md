@@ -50,7 +50,7 @@ curl -i $PROXY_IP/get
 {"message":"Unauthorized"}
 ```
 
-## Provision Consumers ans Secrets 
+## Provision Consumers and Secrets 
 ```bash
 kubectl apply -f 300-consumers.yaml -n kong
 kubectl create secret -n kong \
